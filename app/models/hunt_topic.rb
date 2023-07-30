@@ -1,0 +1,2 @@
+class HuntTopic < ApplicationRecord
+end
