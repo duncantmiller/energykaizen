@@ -1,0 +1,22 @@
+<% cancel_path ||= treasure_hunt.persisted? ? [:account, treasure_hunt] : [:account, @team, :treasure_hunts] %>
+
+<%= form_with model: treasure_hunt, url: (treasure_hunt.persisted? ? [:account, treasure_hunt] : [:account, @team, :treasure_hunts]), local: true, class: 'form' do |form| %>
+  <%= render "shared/limits/form", form: form, cancel_path: cancel_path do %>
+    <%= render 'account/shared/forms/errors', form: form %>
+
+    <% with_field_settings form: form do %>
+      <%= render 'shared/fields/text_field', method: :name, options: {autofocus: true} %>
+      <%= render 'shared/fields/date_field', method: :starts_at %>
+      <%= render 'shared/fields/date_field', method: :ends_at %>
+      <%= render 'shared/fields/text_area', method: :call_to_action %>
+      <%= render 'shared/fields/text_area', method: :incentive %>
+      <%= render 'shared/fields/options', method: :allow_image %>
+      <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <% end %>
+
+    <div class="buttons">
+      <%= form.submit (form.object.persisted? ? t('.buttons.update') : t('.buttons.create')), class: "button" %>
+      <%= link_to t('global.buttons.cancel'), cancel_path, class: "button-secondary" %>
+    </div>
+  <% end %>
+<% end %>

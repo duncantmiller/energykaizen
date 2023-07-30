@@ -1,0 +1,8 @@
+<% treasure_hunt ||= @treasure_hunt %>
+<% team ||= @team || treasure_hunt&.team %>
+<%= render 'account/teams/breadcrumbs', team: team %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, team, :treasure_hunts] %>
+<% if treasure_hunt&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: treasure_hunt.label_string, url: [:account, treasure_hunt] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'treasure_hunts' %>

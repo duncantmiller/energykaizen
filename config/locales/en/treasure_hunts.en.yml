@@ -1,0 +1,117 @@
+en:
+  treasure_hunts: &treasure_hunts
+    label: &label Treasure Hunts
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: ti ti-map
+    buttons: &buttons
+      new: Add New Treasure Hunt
+      create: Create Treasure Hunt
+      edit: Edit Treasure Hunt
+      update: Update Treasure Hunt
+      destroy: Remove Treasure Hunt
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{treasure_hunt_name}? This will also remove any child resources and can't be undone.
+    fields: &fields
+      id:
+        heading: Treasure Hunt ID
+      team_id:
+        heading: Team ID
+      name:
+        _: &name Name
+        label: *name
+        heading: *name
+      starts_at:
+        _: &starts_at Starts At
+        label: *starts_at
+        heading: *starts_at
+      ends_at:
+        _: &ends_at Ends At
+        label: *ends_at
+        heading: *ends_at
+      call_to_action:
+        _: &call_to_action Call To Action
+        label: *call_to_action
+        heading: *call_to_action
+      incentive:
+        _: &incentive Incentive
+        label: *incentive
+        heading: *incentive
+      allow_image:
+        _: &allow_image Allow Image
+        label: *allow_image
+        heading: *allow_image
+        options:
+          yes: "Yes"
+          no: "No"
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Treasure Hunts"
+      index: "List Treasure Hunts"
+      create: "Add a New Treasure Hunt"
+      member_actions: "Actions for an Individual Treasure Hunt"
+      show: "Retrieve a Treasure Hunt"
+      update: "Update a Treasure Hunt"
+      destroy: "Delete a Treasure Hunt"
+      fields: *fields
+    index:
+      section: "%{teams_possessive} Treasure Hunts"
+      contexts:
+        team:
+          header: Treasure Hunts
+          description: Below is a list of Treasure Hunts that have been added for %{team_name}.
+          description_empty: No Treasure Hunts have been added for %{team_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{treasure_hunt_name}"
+      header: Treasure Hunt Details
+      description: Below are the details we have for %{treasure_hunt_name}.
+      manage_description: You'll also find options for updating these details or removing %{treasure_hunt_name} from %{team_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Treasure Hunt for %{team_name}"
+      header: New Treasure Hunt Details
+      description: Please provide the details of the new Treasure Hunt you'd like to add to %{team_name}.
+      form: *form
+    edit:
+      section: "%{treasure_hunt_name}"
+      header: Edit Treasure Hunt Details
+      description: You can update the details or settings for %{treasure_hunt_name} below.
+      form: *form
+    notifications:
+      created: Treasure Hunt was successfully created.
+      updated: Treasure Hunt was successfully updated.
+      destroyed: Treasure Hunt was successfully destroyed.
+  account:
+    treasure_hunts: *treasure_hunts
+  activerecord:
+    attributes:
+      treasure_hunt:
+        name: *name
+        starts_at: *starts_at
+        ends_at: *ends_at
+        call_to_action: *call_to_action
+        incentive: *incentive
+        allow_image: *allow_image
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

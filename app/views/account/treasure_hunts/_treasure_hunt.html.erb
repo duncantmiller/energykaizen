@@ -1,0 +1,27 @@
+<% team = @team || @team %>
+<% context ||= team %>
+<% collection ||= :treasure_hunts %>
+<% hide_actions ||= false %>
+<% hide_back ||= false %>
+
+<% with_attribute_settings object: treasure_hunt do %>
+  <tr data-id="<%= treasure_hunt.id %>">
+    <%= render "shared/tables/checkbox", object: treasure_hunt %>
+    <td><%= render 'shared/attributes/text', attribute: :name, url: [:account, treasure_hunt] %></td>
+    <td><%= render 'shared/attributes/date', attribute: :starts_at %></td>
+    <td><%= render 'shared/attributes/date', attribute: :ends_at %></td>
+    <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
+    <td class="buttons">
+      <% unless hide_actions %>
+        <% if can? :edit, treasure_hunt %>
+          <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, treasure_hunt], class: 'button-secondary button-smaller' %>
+        <% end %>
+        <% if can? :destroy, treasure_hunt %>
+          <%= button_to t('.buttons.shorthand.destroy'), [:account, treasure_hunt], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(treasure_hunt)) }, class: 'button-secondary button-smaller' %>
+        <% end %>
+        <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
