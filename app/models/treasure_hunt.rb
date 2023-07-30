@@ -6,6 +6,7 @@ class TreasureHunt < ApplicationRecord
   belongs_to :team
   # 🚅 add belongs_to associations above.
 
+  has_many :attempts
   # 🚅 add has_many associations above.
 
   # 🚅 add has_one associations above.

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_30_065621) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_30_235417) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,11 +61,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_065621) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "attempts", force: :cascade do |t|
+    t.bigint "treasure_hunt_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["treasure_hunt_id"], name: "index_attempts_on_treasure_hunt_id"
+    t.index ["user_id"], name: "index_attempts_on_user_id"
+  end
+
   create_table "hunt_topics", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "slot"
+  end
+
+  create_table "idea_responses", force: :cascade do |t|
+    t.bigint "attempt_id", null: false
+    t.bigint "idea_id", null: false
+    t.string "value"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attempt_id"], name: "index_idea_responses_on_attempt_id"
+    t.index ["idea_id"], name: "index_idea_responses_on_idea_id"
   end
 
   create_table "ideas", force: :cascade do |t|
@@ -371,6 +391,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_065621) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "attempts", "treasure_hunts"
+  add_foreign_key "attempts", "users"
+  add_foreign_key "idea_responses", "attempts"
+  add_foreign_key "idea_responses", "ideas"
   add_foreign_key "ideas", "hunt_topics"
   add_foreign_key "integrations_stripe_installations", "oauth_stripe_accounts"
   add_foreign_key "integrations_stripe_installations", "teams"
