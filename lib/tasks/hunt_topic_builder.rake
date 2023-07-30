@@ -4,8 +4,11 @@ namespace :hunt_topic_builder do
     "Lighting", "Compressed Air Systems", "Motors", "Steam Systems", "Pumping Systems", "Fan Systems"
   ]
   task build_all: :environment do
+    ## remove this once we start collecting data
     Idea.destroy_all
     HuntTopic.destroy_all
+    ####
+
     puts "starting hunt topics: #{HuntTopic.all.size}"
     puts "starting ideas: #{Idea.all.size}"
     generate_pumping_systems
