@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :attempt do
-    treasure_hunt { nil }
+    association :treasure_hunt
     user { nil }
   end
 end

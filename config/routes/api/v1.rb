@@ -31,7 +31,9 @@ shallow do
         # 🚅 super scaffolding will insert new integration installations above this line.
       end
 
-      resources :treasure_hunts
+      resources :treasure_hunts do
+        resources :attempts
+      end
     end
   end
 end

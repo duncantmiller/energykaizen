@@ -1,0 +1,8 @@
+<% attempt ||= @attempt %>
+<% treasure_hunt ||= @treasure_hunt || attempt&.treasure_hunt %>
+<%= render 'account/treasure_hunts/breadcrumbs', treasure_hunt: treasure_hunt %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, treasure_hunt, :attempts] %>
+<% if attempt&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: attempt.label_string, url: [:account, attempt] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'attempts' %>

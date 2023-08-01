@@ -7,6 +7,7 @@ class TreasureHunt < ApplicationRecord
   # 🚅 add belongs_to associations above.
 
   has_many :attempts
+  has_many :attempts, dependent: :destroy
   # 🚅 add has_many associations above.
 
   # 🚅 add has_one associations above.

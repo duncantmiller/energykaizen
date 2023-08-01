@@ -1,0 +1,89 @@
+en:
+  attempts: &attempts
+    label: &label Attempts
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Attempt
+      create: Create Attempt
+      edit: Edit Attempt
+      update: Update Attempt
+      destroy: Remove Attempt
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{attempt_name}? This will also remove any child resources and can't be undone.
+    fields: &fields
+      id:
+        heading: Attempt ID
+      treasure_hunt_id:
+        heading: Treasure Hunt ID
+      first_name:
+        _: &first_name First Name
+        label: *first_name
+        heading: *first_name
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Attempts"
+      index: "List Attempts"
+      create: "Add a New Attempt"
+      member_actions: "Actions for an Individual Attempt"
+      show: "Retrieve a Attempt"
+      update: "Update a Attempt"
+      destroy: "Delete a Attempt"
+      fields: *fields
+    index:
+      section: "%{treasure_hunts_possessive} Attempts"
+      contexts:
+        treasure_hunt:
+          header: Attempts
+          description: Below is a list of Attempts that have been added for %{treasure_hunt_name}.
+          description_empty: No Attempts have been added for %{treasure_hunt_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{attempt_name}"
+      header: Attempt Details
+      description: Below are the details we have for %{attempt_name}.
+      manage_description: You'll also find options for updating these details or removing %{attempt_name} from %{treasure_hunt_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Attempt for %{treasure_hunt_name}"
+      header: New Attempt Details
+      description: Please provide the details of the new Attempt you'd like to add to %{treasure_hunt_name}.
+      form: *form
+    edit:
+      section: "%{attempt_name}"
+      header: Edit Attempt Details
+      description: You can update the details or settings for %{attempt_name} below.
+      form: *form
+    notifications:
+      created: Attempt was successfully created.
+      updated: Attempt was successfully updated.
+      destroyed: Attempt was successfully destroyed.
+  account:
+    attempts: *attempts
+  activerecord:
+    attributes:
+      attempt:
+        first_name: *first_name
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

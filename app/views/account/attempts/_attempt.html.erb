@@ -1,0 +1,25 @@
+<% treasure_hunt = @treasure_hunt || @treasure_hunt %>
+<% context ||= treasure_hunt %>
+<% collection ||= :attempts %>
+<% hide_actions ||= false %>
+<% hide_back ||= false %>
+
+<% with_attribute_settings object: attempt do %>
+  <tr data-id="<%= attempt.id %>">
+    <%= render "shared/tables/checkbox", object: attempt %>
+    <td><%= render 'shared/attributes/text', attribute: :first_name, url: [:account, attempt] %></td>
+    <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
+    <td class="buttons">
+      <% unless hide_actions %>
+        <% if can? :edit, attempt %>
+          <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, attempt], class: 'button-secondary button-smaller' %>
+        <% end %>
+        <% if can? :destroy, attempt %>
+          <%= button_to t('.buttons.shorthand.destroy'), [:account, attempt], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(attempt)) }, class: 'button-secondary button-smaller' %>
+        <% end %>
+        <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

@@ -34,6 +34,7 @@
       <% end %>
     <% end %>
 
+    <%= render 'account/attempts/index', attempts: @treasure_hunt.attempts, hide_back: true %>
     <%# 🚅 super scaffolding will insert new children above this line. %>
   <% end %>
 <% end %>
